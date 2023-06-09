@@ -1,0 +1,16 @@
+graph LR;
+
+subgraph "Guest Network (192.168.2.0/24)"
+  A("Web Server - 192.168.1.10") -- Serves guest Wi-Fi captive portal and QR code-based authentication --> B("Firewall - 192.168.2.1") -- Enforces security policies for guest network;
+  A --- Provides internet access for guests;
+end
+
+subgraph "Internal Network (10.0.0.0/24)"
+  C("MS SQL Server - 10.0.0.2") -- Hosts the hospital's MS SQL database --> D("Application Server - 10.0.0.3") -- Runs hospital-specific applications;
+  B --- Enforces security policies between guest and internal networks;
+end
+
+style A fill:#ffe0b2,stroke:#ffa726
+style B fill:#bbdefb,stroke:#0d47a1
+style C fill:#c8e6c9,stroke:#2e7d32
+style D fill:#ffcdd2,stroke:#d32f2f
